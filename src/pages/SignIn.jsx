@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { publicRequest } from "../requestMethods";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
   const validationSchema = Yup.object().shape({
@@ -19,8 +21,16 @@ const SignIn = () => {
     password: "",
   };
 
-  const handleSubmit = (values) => {
-    console.log("Form submitted with values:", values);
+  const handleSubmit = async (values) => {
+    await publicRequest
+      .post(`login`, values)
+      .then((res) => {
+        toast.success("Sign In Successful!");
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   const formik = useFormik({
@@ -44,7 +54,7 @@ const SignIn = () => {
             src="https://img.freepik.com/free-psd/3d-character-young-man-with-business-concept_1150-64049.jpg?w=2000&t=st=1695475056~exp=1695475656~hmac=7d21c4d62e52c4683dac4ce1cc8a55d3f36d7af45f8493838474246ccca3f9fe"
             alt="image"
           />
-          <div className="bg-gray-200 top-[75%] bg-transparent left-8 absolute">
+          <div className="bg-gray-200 top-[70%] bg-transparent left-8 absolute">
             <img
               className="object-contain w-[72px] h-[72px] rounded-full"
               src="https://img.freepik.com/free-psd/engraved-black-logo-mockup_125540-223.jpg?size=626&ext=jpg&ga=GA1.1.1764889591.1695032775&semt=sph"
@@ -138,7 +148,7 @@ const SignIn = () => {
             onClick={() => {
               navigate("/forgot-password");
             }}
-            className="flex gap-1 justify-center items-center w-full cursor-pointer mt-4 text-sm font-normal leading-5 text-gray-700 text-center"
+            className="flex gap-3 justify-center items-center w-full cursor-pointer mt-4 text-sm font-normal leading-5 text-gray-500 text-center"
           >
             <FaLock />
             Forgot your password

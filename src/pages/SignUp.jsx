@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock } from "react-icons/fa";
+import { BsFillPersonFill } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
+import { publicRequest } from "../requestMethods";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
+    name: Yup.string().required("Name is required"),
     phone: Yup.number()
       .required("Phone number is required")
       .typeError("Invalid phone number"),
@@ -18,13 +22,22 @@ const SignUp = () => {
   });
 
   const initialValues = {
+    name: "",
     email: "",
     password: "",
-    phone:'',
+    phone: "",
   };
 
-  const handleSubmit = (values) => {
-    console.log("Form submitted with values:", values);
+  const handleSubmit = async (values) => {
+    await publicRequest
+      .post(`sign-up`, values)
+      .then((res) => {
+        toast.success("Sign Up Successful!");
+        navigate("/sign-in");
+      })
+      .catch((error) => {
+        toast.error("Error signing up");
+      });
   };
 
   const formik = useFormik({
@@ -56,8 +69,40 @@ const SignUp = () => {
         <div className="bg-white p-4 md:p-8 shadow-md w-full max-w-[450px]">
           <form onSubmit={formik.handleSubmit}>
             <label
-              htmlFor="email"
+              htmlFor="name"
               className="block text-sm font-medium leading-6 text-gray-700 mb-2 mt-[40px] "
+            >
+              Name
+            </label>
+
+            <div
+              className={` ${
+                !(formik.touched.name && formik.errors.name) ? "mb-4" : ""
+              } border-gray-300 border rounded-md flex items-center h-9`}
+            >
+              <span className="h-full flex items-center py-1 px-3 text-sm font-normal leading-5 text-gray-700 text-center whitespace-nowrap bg-gray-200 border rounded-tl-md rounded-bl-md">
+                <BsFillPersonFill />
+              </span>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter an name"
+                className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+              />
+            </div>
+            {formik.touched.name && formik.errors.name && (
+              <div className="text-red-600 text-xs mb-2 font-semibold py-2">
+                {formik.errors.name}
+              </div>
+            )}
+
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium leading-6 text-gray-700 mb-2 "
             >
               Email
             </label>

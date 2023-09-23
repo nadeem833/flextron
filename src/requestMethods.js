@@ -1,8 +1,6 @@
 import axios from "axios";
 
-console.log(REACT_APP_ENV);
-
-let BASEURL = "https://stg-api.shipntrack.app/";
+let BASEURL = "https://flextron-backend-669d4058ed23.herokuapp.com/";
 
 
 export const publicRequest = axios.create({
@@ -12,5 +10,5 @@ export const publicRequest = axios.create({
 export const privateRequest = axios.create({
   baseURL: BASEURL,
   withCredentials: true,
-  timeout: 60000
+//   timeout: 60000
 });
