@@ -30,7 +30,7 @@ const ForgotPassword = () => {
     "We can't find a user with that email address."
   );
 
-  const [emailSent, setEmailSent] = useState(true);
+  const [emailSent, setEmailSent] = useState(false);
 
   const navigate = useNavigate();
 

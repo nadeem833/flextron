@@ -14,7 +14,7 @@ function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/reset/:id' element={<ResetPassword />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
 
         {/* Private Routes
         <Route path="/" element={<Layout />}>
