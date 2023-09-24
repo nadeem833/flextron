@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import { publicRequest } from "../requestMethods";
+import { privateRequest, publicRequest } from "../requestMethods";
 
 export const Support = () => {
   const validationSchema = Yup.object({
@@ -16,7 +16,7 @@ export const Support = () => {
   };
 
   const handleSubmit = async (values) => {
-    await publicRequest
+    await privateRequest
       .post(`/contact`, values)
       .then((res) => {
         console.log(res)
