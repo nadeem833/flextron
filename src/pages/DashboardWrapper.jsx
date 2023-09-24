@@ -1,13 +1,15 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 function DashboardWrapper({ children }) {
     return (
         <>
         <Navbar />
-        <div className='h-screen bg-red-200'>
+        <div className='h-[calc(100vh-185px)] bg-gray-200 flex justify-center'>
             {children}
         </div>
+        <Footer/>
         </>
     )
 }

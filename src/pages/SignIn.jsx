@@ -85,7 +85,7 @@ const SignIn = () => {
                 id="email"
                 name="email"
                 placeholder="Enter an email"
-                className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
+                className="w-full border-gray-300 border-2 rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 error={formik.touched.email && Boolean(formik.errors.email)}

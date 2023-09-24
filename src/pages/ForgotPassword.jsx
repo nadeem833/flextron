@@ -4,6 +4,9 @@ import * as Yup from "yup";
 import { FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { IoMailUnreadOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
+import { publicRequest } from "../requestMethods";
+
 
 const ForgotPassword = () => {
   const validationSchema = Yup.object().shape({
@@ -16,8 +19,15 @@ const ForgotPassword = () => {
     email: "",
   };
 
-  const handleSubmit = (values) => {
-    console.log("Form submitted with values:", values);
+  const handleSubmit = async (values) => {
+    await publicRequest
+      .post(`forgot-password`, values)
+      .then((res) => {
+        setEmailSent(true)
+      })
+      .catch((error) => {
+        setErrorMessage("Something went wrong");
+      });
   };
 
   const formik = useFormik({
@@ -26,9 +36,7 @@ const ForgotPassword = () => {
     onSubmit: handleSubmit,
   });
 
-  const [errorMessage, setErrorMessage] = useState(
-    "We can't find a user with that email address."
-  );
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [emailSent, setEmailSent] = useState(false);
 

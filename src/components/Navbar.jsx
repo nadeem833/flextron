@@ -82,7 +82,7 @@ const Navbar = () => {
       </div>
 
       {/* Section 2 (Navigation Links) */}
-      <div className="w-full flex justify-center h-[53px] bg-white">
+      <div className="w-full flex justify-center h-[55px] bg-white">
         <div className="items-center justify-between hidden lg:flex space-x-6 w-full max-w-[1280px]">
           <Link to="/dashboard">
             <a className="text-black hover:text-blue-500">Dashboard</a>
