@@ -20,7 +20,7 @@ const Navbar = () => {
           <div className="flex">
             {/* Logo */}
             <div className="w-36 h-[50px] flex items-center">
-              <img src="./Logo.png" alt="" className="object-cover"/>
+              <img src="/Logo.png" alt="" className="object-cover"/>
             </div>
 
             {/* Burger Menu */}

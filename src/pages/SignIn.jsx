@@ -53,7 +53,7 @@ const SignIn = () => {
           <div className="bg-gray-200 top-[75%] bg-transparent left-8 absolute">
             <img
               className="object-contain w-[72px] h-[72px] rounded-full border border-orange-300 bg-white"
-              src="./SmallLogo.png"
+              src="/SmallLogo.png"
               alt="avatar"
             />
           </div>
@@ -80,7 +80,7 @@ const SignIn = () => {
                 type="text"
                 id="email"
                 name="email"
-                placeholder="Amazon Flex Email"
+                placeholder="Enter Email"
                 className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
                 value={formik.values.email}
                 onChange={formik.handleChange}
@@ -110,7 +110,7 @@ const SignIn = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
-                placeholder="Amazon Flex Password"
+                placeholder="Enter Password"
                 className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 text-xs::placeholder focus:outline-none "
                 value={formik.values.password}
                 onChange={formik.handleChange}
