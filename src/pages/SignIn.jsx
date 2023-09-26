@@ -80,7 +80,7 @@ const SignIn = () => {
                 type="text"
                 id="email"
                 name="email"
-                placeholder="Amazon Flex Email"
+                placeholder="Enter Email"
                 className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
                 value={formik.values.email}
                 onChange={formik.handleChange}
@@ -110,7 +110,7 @@ const SignIn = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
-                placeholder="Amazon Flex Password"
+                placeholder="Enter Password"
                 className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 text-xs::placeholder focus:outline-none "
                 value={formik.values.password}
                 onChange={formik.handleChange}
