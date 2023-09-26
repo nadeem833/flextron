@@ -5,6 +5,7 @@ import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { publicRequest } from "../requestMethods";
 import { toast } from "react-toastify";
+import FormHeader from "../components/FormHeader";
 
 const SignIn = () => {
   const validationSchema = Yup.object().shape({
@@ -12,8 +13,7 @@ const SignIn = () => {
       .email("Invalid email address")
       .required("Email is required"),
     password: Yup.string()
-      .required("Password is required")
-      .min(8, "Password should be of minimum 8 characters length"),
+      .required("Password is required"),
   });
 
   const initialValues = {
@@ -49,15 +49,11 @@ const SignIn = () => {
     <>
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 px-3">
         <div className="relative w-full max-w-[450px]">
-          <img
-            className="object-cover w-full h-28"
-            src="https://img.freepik.com/free-psd/3d-character-young-man-with-business-concept_1150-64049.jpg?w=2000&t=st=1695475056~exp=1695475656~hmac=7d21c4d62e52c4683dac4ce1cc8a55d3f36d7af45f8493838474246ccca3f9fe"
-            alt="image"
-          />
-          <div className="bg-gray-200 top-[70%] bg-transparent left-8 absolute">
+         <FormHeader title={'Welcome Back !'} subTitle={'Sign in to continue to Flextron.'}/>
+          <div className="bg-gray-200 top-[75%] bg-transparent left-8 absolute">
             <img
-              className="object-contain w-[72px] h-[72px] rounded-full"
-              src="https://img.freepik.com/free-psd/engraved-black-logo-mockup_125540-223.jpg?size=626&ext=jpg&ga=GA1.1.1764889591.1695032775&semt=sph"
+              className="object-contain w-[72px] h-[72px] rounded-full border border-orange-300 bg-white"
+              src="./SmallLogo.png"
               alt="avatar"
             />
           </div>
@@ -84,8 +80,8 @@ const SignIn = () => {
                 type="text"
                 id="email"
                 name="email"
-                placeholder="Enter an email"
-                className="w-full border-gray-300 border-2 rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
+                placeholder="Amazon Flex Email"
+                className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 error={formik.touched.email && Boolean(formik.errors.email)}
@@ -114,7 +110,7 @@ const SignIn = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
-                placeholder="Enter password"
+                placeholder="Amazon Flex Password"
                 className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 text-xs::placeholder focus:outline-none "
                 value={formik.values.password}
                 onChange={formik.handleChange}
@@ -137,8 +133,8 @@ const SignIn = () => {
 
             <button
               type="submit"
-              className="font-normal leading-6 rounded-md text-sm h-9 w-full text-white
-          bg-[#485ec4]  hover:bg-[#4458b8] focus:outline-none focus:bg-blue-500"
+              className="font-normal leading-6 rounded-md text-sm h-9 w-full text-black
+          bg-[#f7931e]  hover:bg-orange-400 focus:outline-none focus:bg-orange-500"
             >
               Login
             </button>
@@ -161,7 +157,7 @@ const SignIn = () => {
             onClick={() => {
               navigate("/sign-up");
             }}
-            className="text-blue-500 font-medium cursor-pointer"
+            className="text-[#f7931e] font-medium cursor-pointer"
           >
             Signup now
           </span>

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { IoMailUnreadOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { publicRequest } from "../requestMethods";
-
+import FormHeader from "../components/FormHeader";
 
 const ForgotPassword = () => {
   const validationSchema = Yup.object().shape({
@@ -23,7 +23,7 @@ const ForgotPassword = () => {
     await publicRequest
       .post(`forgot-password`, values)
       .then((res) => {
-        setEmailSent(true)
+        setEmailSent(true);
       })
       .catch((error) => {
         setErrorMessage("Something went wrong");
@@ -46,15 +46,14 @@ const ForgotPassword = () => {
     <>
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 px-3">
         <div className="relative w-full max-w-[450px]">
-          <img
-            className="object-cover w-full h-28"
-            src="https://img.freepik.com/free-psd/3d-character-young-man-with-business-concept_1150-64049.jpg?w=2000&t=st=1695475056~exp=1695475656~hmac=7d21c4d62e52c4683dac4ce1cc8a55d3f36d7af45f8493838474246ccca3f9fe"
-            alt="image"
+          <FormHeader
+            title={"Reset Password"}
+            subTitle={"Re-Password with Flextron"}
           />
           <div className="bg-gray-200 top-[75%] bg-transparent left-8 absolute">
             <img
-              className="object-contain w-[72px] h-[72px] rounded-full"
-              src="https://img.freepik.com/free-psd/engraved-black-logo-mockup_125540-223.jpg?size=626&ext=jpg&ga=GA1.1.1764889591.1695032775&semt=sph"
+              className="object-contain w-[72px] h-[72px] rounded-full border border-orange-300 bg-white"
+              src="./SmallLogo.png"
               alt="avatar"
             />
           </div>
@@ -107,8 +106,8 @@ const ForgotPassword = () => {
 
               <button
                 type="submit"
-                className="font-normal leading-6 rounded-md text-sm h-9 w-full text-white
-          bg-[#485ec4]  hover:bg-[#4458b8] focus:outline-none focus:bg-blue-500"
+                className="font-normal leading-6 rounded-md text-sm h-9 w-full text-black
+                bg-[#f7931e]  hover:bg-orange-400 focus:outline-none focus:bg-orange-500"
               >
                 Reset
               </button>
@@ -131,7 +130,7 @@ const ForgotPassword = () => {
             onClick={() => {
               navigate("/sign-in");
             }}
-            className="text-blue-500 font-medium cursor-pointer"
+            className="text-[#f7931e]  font-medium cursor-pointer"
           >
             Sign In here
           </span>
