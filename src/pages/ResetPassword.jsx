@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FormHeader from "../components/FormHeader";
+import { publicRequest } from "../requestMethods";
 
 const ResetPassword = () => {
+
+  const {id} = useParams() 
+
   const validationSchema = Yup.object().shape({
     password: Yup.string()
-      .required("Password is required")
-      .min(8, "Password should be of minimum 8 characters length"),
+      .required("Password is required"),
     confirmPassword: Yup.string()
-      .required("Confirm Password is required")
-      .min(8, "Password should be of minimum 8 characters length"),
+      .required("Confirm Password is required"),
   });
 
   const initialValues = {
@@ -20,12 +22,22 @@ const ResetPassword = () => {
     confirmPassword: "",
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     if (values.password !== values.confirmPassword) {
       setPasswordError("Passwords do not match");
     } else {
       setPasswordError(null);
-      console.log("call api");
+      let apiObject = {
+        password : values.password
+      }
+      await publicRequest
+      .post(`reset-password?token=${id}`, apiObject)
+      .then((res) => {
+        setApiSuccess("true");
+      })
+      .catch((error) => {
+        setApiSuccess("false");
+      });
     }
   };
 
@@ -47,6 +59,8 @@ const ResetPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  console.log(id)
+  
   useEffect(() => {
     if (passwordError !== null) {
       if (formik.values.confirmPassword === formik.values.password) {
