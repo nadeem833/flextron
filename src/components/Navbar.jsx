@@ -13,14 +13,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-950">
+    <nav className="bg-orange-200">
       <div className="w-full h-[70px] max-w-[1280px] mx-auto flex justify-between items-center ">
         {/* Section 1 */}
         <div className="flex items-center justify-between w-full">
           <div className="flex">
             {/* Logo */}
-            <div className="text-white text-2xl font-semibold mr-4">
-              Your Logo
+            <div className="w-36 h-[50px] flex items-center">
+              <img src="./Logo.png" alt="" className="object-cover"/>
             </div>
 
             {/* Burger Menu */}
@@ -85,25 +85,25 @@ const Navbar = () => {
       <div className="w-full flex justify-center h-[55px] bg-white">
         <div className="items-center justify-between hidden lg:flex space-x-6 w-full max-w-[1280px]">
           <Link to="/dashboard">
-            <a className="text-black hover:text-blue-500">Dashboard</a>
+            <a className="text-black hover:text-[#f7931e]">Dashboard</a>
           </Link>
           <Link to="/calendar">
-            <a className="text-black hover:text-blue-500">Calendar</a>
+            <a className="text-black hover:text-[#f7931e]">Calendar</a>
           </Link>
           <Link to="/activity">
-            <a className="text-black hover:text-blue-500">Activity</a>
+            <a className="text-black hover:text-[#f7931e]">Activity</a>
           </Link>
           <Link to="/link-accounts">
-            <a className="text-black hover:text-blue-500">Link Accounts</a>
+            <a className="text-black hover:text-[#f7931e]">Link Accounts</a>
           </Link>
           <Link to="/invite-friends">
-            <a className="text-black hover:text-blue-500">Invite Friends</a>
+            <a className="text-black hover:text-[#f7931e]">Invite Friends</a>
           </Link>
           <Link to="/support">
-            <a className="text-black hover:text-blue-500">Contact Support</a>
+            <a className="text-black hover:text-[#f7931e]">Contact Support</a>
           </Link>
           <Link to="/make-payment">
-            <a className="text-black hover:text-blue-500">Make Payment</a>
+            <a className="text-black hover:text-[#f7931e]">Make Payment</a>
           </Link>
         </div>
       </div>

@@ -106,7 +106,7 @@ export const Support = () => {
           )}
           <button
             type="submit"
-            className="font-normal leading-6 rounded-md text-sm h-9 w-full text-white bg-[#485ec4]  hover:bg-[#4458b8] focus:outline-none focus:bg-blue-500"
+            className="font-normal leading-6 rounded-md text-sm h-9 w-full text-black bg-[#f7931e]  hover:bg-orange-400 focus:outline-none focus:bg-orange-500"
           >
             Create
           </button>

@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import FormHeader from "../components/FormHeader";
+import { publicRequest } from "../requestMethods";
 
 const ResetPassword = () => {
+
+  const {id} = useParams() 
+
   const validationSchema = Yup.object().shape({
     password: Yup.string()
-      .required("Password is required")
-      .min(8, "Password should be of minimum 8 characters length"),
+      .required("Password is required"),
     confirmPassword: Yup.string()
-      .required("Confirm Password is required")
-      .min(8, "Password should be of minimum 8 characters length"),
+      .required("Confirm Password is required"),
   });
 
   const initialValues = {
@@ -19,12 +22,22 @@ const ResetPassword = () => {
     confirmPassword: "",
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     if (values.password !== values.confirmPassword) {
       setPasswordError("Passwords do not match");
     } else {
       setPasswordError(null);
-      console.log("call api");
+      let apiObject = {
+        password : values.password
+      }
+      await publicRequest
+      .post(`reset-password?token=${id}`, apiObject)
+      .then((res) => {
+        setApiSuccess("true");
+      })
+      .catch((error) => {
+        setApiSuccess("false");
+      });
     }
   };
 
@@ -46,6 +59,8 @@ const ResetPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  console.log(id)
+  
   useEffect(() => {
     if (passwordError !== null) {
       if (formik.values.confirmPassword === formik.values.password) {
@@ -59,15 +74,14 @@ const ResetPassword = () => {
     <>
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 px-3">
         <div className="relative w-full max-w-[450px]">
-          <img
-            className="object-cover w-full h-28"
-            src="https://img.freepik.com/free-psd/3d-character-young-man-with-business-concept_1150-64049.jpg?w=2000&t=st=1695475056~exp=1695475656~hmac=7d21c4d62e52c4683dac4ce1cc8a55d3f36d7af45f8493838474246ccca3f9fe"
-            alt="image"
+          <FormHeader
+            title={"Change Password"}
+            subTitle={"Change password with Flextron"}
           />
           <div className="bg-gray-200 top-[75%] bg-transparent left-8 absolute">
             <img
-              className="object-contain w-[72px] h-[72px] rounded-full"
-              src="https://img.freepik.com/free-psd/engraved-black-logo-mockup_125540-223.jpg?size=626&ext=jpg&ga=GA1.1.1764889591.1695032775&semt=sph"
+              className="object-contain w-[72px] h-[72px] rounded-full border border-orange-300 bg-white"
+              src="./SmallLogo.png"
               alt="avatar"
             />
           </div>
@@ -166,8 +180,8 @@ const ResetPassword = () => {
 
               <button
                 type="submit"
-                className="font-normal leading-6 rounded-md text-sm h-9 w-full text-white
-          bg-[#485ec4]  hover:bg-[#4458b8] focus:outline-none focus:bg-blue-500"
+                className="font-normal leading-6 rounded-md text-sm h-9 w-full text-black
+                bg-[#f7931e]  hover:bg-orange-400 focus:outline-none focus:bg-orange-500"
               >
                 Change Password
               </button>
@@ -186,8 +200,8 @@ const ResetPassword = () => {
                 onClick={() => {
                   navigate("/sign-in");
                 }}
-                className="font-normal leading-6 rounded-md text-sm h-9 w-full text-white
-            bg-[#485ec4]  hover:bg-[#4458b8] focus:outline-none focus:bg-blue-500"
+                className="font-normal leading-6 rounded-md text-sm h-9 w-full text-black
+                bg-[#f7931e]  hover:bg-orange-400 focus:outline-none focus:bg-orange-500"
               >
                 Go to login
               </button>
@@ -206,8 +220,8 @@ const ResetPassword = () => {
                 onClick={() => {
                   navigate("/sign-in");
                 }}
-                className="font-normal leading-6 rounded-md text-sm h-9 w-full text-white
-            bg-[#485ec4]  hover:bg-[#4458b8] focus:outline-none focus:bg-blue-500"
+                className="font-normal leading-6 rounded-md text-sm h-9 w-full text-black
+                bg-[#f7931e]  hover:bg-orange-400 focus:outline-none focus:bg-orange-500"
               >
                 Go to login
               </button>
@@ -222,7 +236,7 @@ const ResetPassword = () => {
               onClick={() => {
                 navigate("/sign-in");
               }}
-              className="text-blue-500 font-medium cursor-pointer"
+              className="text-[#f7931e] font-medium cursor-pointer"
             >
               Sign In here
             </span>
