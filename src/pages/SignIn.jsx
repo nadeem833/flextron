@@ -53,7 +53,7 @@ const SignIn = () => {
           <div className="bg-gray-200 top-[75%] bg-transparent left-8 absolute">
             <img
               className="object-contain w-[72px] h-[72px] rounded-full border border-orange-300 bg-white"
-              src="./SmallLogo.png"
+              src="/SmallLogo.png"
               alt="avatar"
             />
           </div>

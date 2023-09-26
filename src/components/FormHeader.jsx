@@ -14,7 +14,7 @@ const FormHeader = ({ title, subTitle }) => {
       <div className="w-[40%] flex items-center">
         <img
           className="w-full h-24"
-          src="./FormHeaderImage.png"
+          src="/FormHeaderImage.png"
           alt="delivery truck"
         />
       </div>
