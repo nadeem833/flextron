@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { BsCalendar3, BsCreditCard2Front } from "react-icons/bs"; // Fixed import for BsCalendar3
 import { FaUser } from "react-icons/fa";
-import { Link } from 'react-router-dom'; 
+import { Link } from "react-router-dom";
+import { LuActivitySquare, LuLayoutDashboard } from "react-icons/lu"; // Imported LuActivitySquareFill
+import { ImLink } from "react-icons/im"; // Imported ImLink
+import { BiGift } from "react-icons/bi"; // Imported BiGift
+import { RiCustomerService2Fill } from "react-icons/ri"; // Imported RiCustomerService2Fill
+
 const Navbar = () => {
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -20,7 +26,7 @@ const Navbar = () => {
           <div className="flex">
             {/* Logo */}
             <div className="w-36 h-[50px] flex items-center">
-              <img src="/Logo.png" alt="" className="object-cover"/>
+              <img src="/Logo.png" alt="" className="object-cover" />
             </div>
 
             {/* Burger Menu */}
@@ -82,31 +88,50 @@ const Navbar = () => {
       </div>
 
       {/* Section 2 (Navigation Links) */}
-      <div className="w-full flex justify-center h-[55px] bg-white">
-        <div className="items-center justify-between hidden lg:flex space-x-6 w-full max-w-[1280px]">
-          <Link to="/dashboard">
-            <a className="text-black hover:text-[#f7931e]">Dashboard</a>
-          </Link>
-          <Link to="/calendar">
-            <a className="text-black hover:text-[#f7931e]">Calendar</a>
-          </Link>
-          <Link to="/activity">
-            <a className="text-black hover:text-[#f7931e]">Activity</a>
-          </Link>
-          <Link to="/link-accounts">
-            <a className="text-black hover:text-[#f7931e]">Link Accounts</a>
-          </Link>
-          <Link to="/invite-friends">
-            <a className="text-black hover:text-[#f7931e]">Invite Friends</a>
-          </Link>
-          <Link to="/support">
-            <a className="text-black hover:text-[#f7931e]">Contact Support</a>
-          </Link>
-          <Link to="/make-payment">
-            <a className="text-black hover:text-[#f7931e]">Make Payment</a>
-          </Link>
+      {!isMobileDropdownOpen && (
+        <div className="w-full flex justify-center h-[55px] bg-white">
+          <div className="items-center justify-between hidden lg:flex space-x-6 w-full max-w-[1280px]">
+            <Link to="/dashboard">
+              <a className="text-black hover:text-[#f7931e] flex gap-2 items-center">
+                <LuLayoutDashboard /> Dashboard
+              </a>
+            </Link>
+            <Link to="/calendar">
+              <a className="text-black hover:text-[#f7931e] flex gap-2 items-center">
+                <BsCalendar3 />
+                Calendar
+              </a>
+            </Link>
+            <Link to="/activity">
+              <a className="text-black hover:text-[#f7931e] flex gap-2 items-center">
+                <LuActivitySquare />
+                Activity
+              </a>
+            </Link>
+            <Link to="/link-accounts">
+              <a className="text-black hover:text-[#f7931e] flex gap-2 items-center">
+                <ImLink /> Link Accounts
+              </a>
+            </Link>
+            <Link to="/invite-friends">
+              <a className="text-black hover:text-[#f7931e] flex gap-2 items-center">
+                <BiGift /> Invite Friends
+              </a>
+            </Link>
+            <Link to="/support">
+              <a className="text-black hover:text-[#f7931e] flex gap-2 items-center">
+                <RiCustomerService2Fill />
+                Contact Support
+              </a>
+            </Link>
+            <Link to="/make-payment">
+              <a className="text-black hover:text-[#f7931e] flex gap-2 items-center">
+                <BsCreditCard2Front /> Make Payment
+              </a>
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Mobile Navigation Dropdown */}
       {isMobileDropdownOpen && (

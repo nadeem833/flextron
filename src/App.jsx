@@ -10,13 +10,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import Layout from "./pages/Layout";
 import RequireAuth from "./pages/RequireAuth";
 import Dashboard from "./pages/Dashboard";
-import InviteFriends from "./pages/InviteFriends";
+import {InviteFriends} from "./pages/InviteFriends";
 import MakePayment from "./pages/MakePayment";
 import Calendar from "./pages/Calendar";
-import LinkAccounts from "./pages/LinkAccounts";
 import Activity from "./pages/Activity";
 import { Support } from "./pages/Support";
 import { Profile } from "./pages/Profile";
+import { LinkAccounts } from "./pages/LinkAccounts";
 function App() {
   return (
     <>

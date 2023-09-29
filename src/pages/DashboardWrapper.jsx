@@ -6,7 +6,7 @@ function DashboardWrapper({ children }) {
     return (
         <>
         <Navbar />
-        <div className='h-[calc(100vh-185px)] bg-gray-200 flex justify-center'>
+        <div className='min-h-[calc(100vh-185px)] bg-gray-100 flex justify-center'>
             {children}
         </div>
         <Footer/>

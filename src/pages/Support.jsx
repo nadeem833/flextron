@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { privateRequest, publicRequest } from "../requestMethods";
+import styles from "../styles";
 
 export const Support = () => {
   const validationSchema = Yup.object({
@@ -36,11 +37,11 @@ export const Support = () => {
   return (
     <div className="w-full max-w-[1280px] h-full px-5 lg:px-0">
       <div className="h-[75px] flex justify-between items-center ">
-        <p className="uppercase font-semibold text-base text-gray-700">
+      <p className={`${styles.pageTitle}`}>
           Create Ticket
         </p>
-        <p className="text-sm font-normal leading-6 text-gray-700">
-          Flextron <span className="text-[#74788d]"> / Contact Support</span>
+        <p className={`${styles.breadCrumbTitle}`}>
+          Flextron <span className={`${styles.breadCrumbSubtitle}`}> / Contact Support</span>
         </p>
       </div>
 
@@ -51,20 +52,20 @@ export const Support = () => {
         >
           <label
             htmlFor="subject"
-            className="block text-sm font-medium leading-6 text-gray-700 mb-2 "
+            className={`${styles.formLabel}`}
           >
             Subject
           </label>
           <div
-            className={` ${
-              !(formik.touched.subject && formik.errors.subject) ? "mb-4" : ""
-            } border-gray-300 border rounded-md flex items-center h-9`}
+            className={` 
+            ${!(formik.touched.message && formik.errors.message) && "mb-4" }
+            ${styles.formFieldBox}`}
           >
             <input
               type="text"
               id="subject"
               name="subject"
-              className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
+              className={`${styles.formInput} rounded-s-md`}
               placeholder="Enter Subject"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -79,19 +80,19 @@ export const Support = () => {
 
           <label
             htmlFor="message"
-            className="block text-sm font-medium leading-6 text-gray-700 mb-2"
+            className={`${styles.formLabel}`}
           >
             Message
           </label>
           <div
-            className={` ${
-              !(formik.touched.message && formik.errors.message) ? "mb-4" : ""
-            } border-gray-300 border rounded-md flex items-center`}
+            className={` 
+            ${!(formik.touched.message && formik.errors.message) && "mb-4" }
+             border-gray-300 border rounded-md flex items-center`}
           >
             <textarea
               name="message"
               id="message"
-              className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
+              className={`${styles.formInput} rounded-s-md `}
               placeholder="Enter message"
               rows="8"
               onChange={formik.handleChange}
@@ -106,7 +107,7 @@ export const Support = () => {
           )}
           <button
             type="submit"
-            className="font-normal leading-6 rounded-md text-sm h-9 w-full text-black bg-[#f7931e]  hover:bg-orange-400 focus:outline-none focus:bg-orange-500"
+            className={`${styles.submitButton}`}
           >
             Create
           </button>
