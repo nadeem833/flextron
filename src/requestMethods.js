@@ -10,5 +10,4 @@ export const publicRequest = axios.create({
 export const privateRequest = axios.create({
   baseURL: BASEURL,
   withCredentials: true,
-//   timeout: 60000
 });

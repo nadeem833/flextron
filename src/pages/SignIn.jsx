@@ -12,8 +12,7 @@ const SignIn = () => {
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-    password: Yup.string()
-      .required("Password is required"),
+    password: Yup.string().required("Password is required"),
   });
 
   const initialValues = {
@@ -23,7 +22,7 @@ const SignIn = () => {
 
   const handleSubmit = async (values) => {
     await publicRequest
-      .post(`login`, values)
+      .post(`login`, values, { withCredentials: true })
       .then((res) => {
         toast.success("Sign In Successful!");
         navigate("/dashboard");
@@ -49,7 +48,10 @@ const SignIn = () => {
     <>
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 px-3">
         <div className="relative w-full max-w-[450px]">
-         <FormHeader title={'Welcome Back !'} subTitle={'Sign in to continue to Flextron.'}/>
+          <FormHeader
+            title={"Welcome Back !"}
+            subTitle={"Sign in to continue to Flextron."}
+          />
           <div className="bg-gray-200 top-[75%] bg-transparent left-8 absolute">
             <img
               className="object-contain w-[72px] h-[72px] rounded-full border border-orange-300 bg-white"

@@ -34,8 +34,8 @@ export const Support = () => {
   });
 
   return (
-    <div className="w-full max-w-[1280px] h-full">
-      <div className="h-[75px] flex justify-between items-center px-5 lg:px-0">
+    <div className="w-full max-w-[1280px] h-full px-5 lg:px-0">
+      <div className="h-[75px] flex justify-between items-center ">
         <p className="uppercase font-semibold text-base text-gray-700">
           Create Ticket
         </p>

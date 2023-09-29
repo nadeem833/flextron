@@ -16,6 +16,7 @@ import Calendar from "./pages/Calendar";
 import LinkAccounts from "./pages/LinkAccounts";
 import Activity from "./pages/Activity";
 import { Support } from "./pages/Support";
+import { Profile } from "./pages/Profile";
 function App() {
   return (
     <>
@@ -38,6 +39,7 @@ function App() {
             <Route path='/invite-friends' element={<InviteFriends />} />
             <Route path='/support' element={<Support />} />
             <Route path='/make-payment' element={<MakePayment />} />
+            <Route path='/profile' element={<Profile />} />
 
           </Route>
         </Route>
