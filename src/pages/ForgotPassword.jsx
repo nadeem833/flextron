@@ -7,6 +7,7 @@ import { IoMailUnreadOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { publicRequest } from "../requestMethods";
 import FormHeader from "../components/FormHeader";
+import styles from "../styles";
 
 const ForgotPassword = () => {
   const validationSchema = Yup.object().shape({
@@ -59,7 +60,7 @@ const ForgotPassword = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 md:p-8 shadow-md w-full max-w-[450px]">
+        <div className="bg-white p-4 md:p-8 shadow-md w-full max-w-[450px] rounded-bl-md rounded-br-md">
           {!emailSent ? (
             <form onSubmit={formik.handleSubmit}>
               <label
@@ -106,8 +107,7 @@ const ForgotPassword = () => {
 
               <button
                 type="submit"
-                className="font-normal leading-6 rounded-md text-sm h-9 w-full text-black
-                bg-[#f7931e]  hover:bg-orange-400 focus:outline-none focus:bg-orange-500"
+                className={`${styles.submitButton}`}
               >
                 Reset
               </button>
@@ -130,7 +130,7 @@ const ForgotPassword = () => {
             onClick={() => {
               navigate("/sign-in");
             }}
-            className="text-[#f7931e]  font-medium cursor-pointer"
+            className="text-[#f7931e] font-medium cursor-pointer"
           >
             Sign In here
           </span>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { publicRequest } from "../requestMethods";
 import { toast } from "react-toastify";
 import FormHeader from "../components/FormHeader";
+import styles from "../styles";
 
 const SignIn = () => {
   const validationSchema = Yup.object().shape({
@@ -47,7 +48,7 @@ const SignIn = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 px-3">
-        <div className="relative w-full max-w-[450px]">
+        <div className="relative w-full max-w-[450px] ">
           <FormHeader
             title={"Welcome Back !"}
             subTitle={"Sign in to continue to Flextron."}
@@ -61,7 +62,7 @@ const SignIn = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 md:p-8 shadow-md w-full max-w-[450px]">
+        <div className="bg-white p-4 md:p-8 shadow-md w-full max-w-[450px] rounded-bl-md rounded-br-md">
           <form onSubmit={formik.handleSubmit}>
             <label
               htmlFor="email"
@@ -135,8 +136,7 @@ const SignIn = () => {
 
             <button
               type="submit"
-              className="font-normal leading-6 rounded-md text-sm h-9 w-full text-black
-          bg-[#f7931e]  hover:bg-orange-400 focus:outline-none focus:bg-orange-500"
+              className={`${styles.submitButton}`}
             >
               Login
             </button>
