@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { BsCalendar3, BsCreditCard2Front } from "react-icons/bs"; // Fixed import for BsCalendar3
 import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuActivitySquare, LuLayoutDashboard } from "react-icons/lu"; // Imported LuActivitySquareFill
 import { ImLink } from "react-icons/im"; // Imported ImLink
 import { BiGift } from "react-icons/bi"; // Imported BiGift
 import { RiCustomerService2Fill } from "react-icons/ri"; // Imported RiCustomerService2Fill
 
 const Navbar = () => {
+  const MenuItemStyle="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+  const navigate = useNavigate()
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -68,18 +70,24 @@ const Navbar = () => {
             {isDropdownOpen && (
               <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                 <div className="py-1">
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  <p
+                    onClick={()=>{navigate('/profile'); toggleDropdown() }}
+                    className={MenuItemStyle}
                   >
                     Edit Profile
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  </p>
+                  <p
+                    onClick={()=>{navigate('/change-password') ; toggleDropdown()}}
+                    className={MenuItemStyle}
                   >
                     Change Password
-                  </a>
+                  </p>
+                  <p
+                    onClick={()=>{navigate('/sign-in') ; toggleDropdown()}}
+                    className={MenuItemStyle}
+                  >
+                    Logout
+                  </p>
                 </div>
               </div>
             )}

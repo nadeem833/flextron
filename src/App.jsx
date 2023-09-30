@@ -17,6 +17,7 @@ import Activity from "./pages/Activity";
 import { Support } from "./pages/Support";
 import { Profile } from "./pages/Profile";
 import { LinkAccounts } from "./pages/LinkAccounts";
+import { ChangePassword } from "./pages/ChangePassword";
 function App() {
   return (
     <>
@@ -40,6 +41,7 @@ function App() {
             <Route path='/support' element={<Support />} />
             <Route path='/make-payment' element={<MakePayment />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/change-password' element={<ChangePassword />} />
 
           </Route>
         </Route>
