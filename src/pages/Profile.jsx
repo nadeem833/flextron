@@ -20,23 +20,22 @@ export const Profile = () => {
   });
 
   const initialValues = {
-    email: "dummy_email@yopmail.com",
+    email: "testing@yopmail.com",
     phone: "",
+
   };
 
   const handleSubmit = async (values) => {
-    // await privateRequest
-    //   .post(`/contact`, values)
-    //   .then((res) => {
-    //     console.log(res);
-    //     toast.success("Ticket created successful!");
-    //   })
-    //   .catch((error) => {
-    //     toast.error(error.response.data.message);
-    //   });
+    await privateRequest
+      .put(`/update-user`, values)
+      .then((res) => {
+        toast.success("Update successful!");
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
-  console.log(selectedImage)
   const formik = useFormik({
     initialValues,
     validationSchema,

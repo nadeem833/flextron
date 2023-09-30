@@ -7,8 +7,13 @@ import { publicRequest } from "../requestMethods";
 import { toast } from "react-toastify";
 import FormHeader from "../components/FormHeader";
 import styles from "../styles";
+import { loginSuccess } from "../redux/authSlice";
+import { useDispatch } from "react-redux";
 
 const SignIn = () => {
+
+  const dispatch = useDispatch()
+
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email address")
@@ -25,7 +30,7 @@ const SignIn = () => {
     await publicRequest
       .post(`login`, values, { withCredentials: true })
       .then((res) => {
-        toast.success("Sign In Successful!");
+        dispatch(loginSuccess(res))
         navigate("/dashboard");
       })
       .catch((error) => {
