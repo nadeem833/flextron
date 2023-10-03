@@ -4,11 +4,11 @@ import * as Yup from "yup";
 import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import FormHeader from "../components/FormHeader";
-import { publicRequest } from "../requestMethods";
+import { privateRequest, publicRequest } from "../requestMethods";
 import styles from "../styles";
+import { toast } from "react-toastify";
 
 export const ChangePassword = () => {
-  const { id } = useParams();
 
   const validationSchema = Yup.object().shape({
     currentPassword: Yup.string().required("Current password is required"),
@@ -22,23 +22,29 @@ export const ChangePassword = () => {
     confirmPassword: "",
   };
 
-  const handleSubmit = async (values) => {
-    // if (values.password !== values.confirmPassword) {
-    //   setPasswordError("Passwords do not match");
-    // } else {
-    //   setPasswordError(null);
-    //   let apiObject = {
-    //     password : values.password
-    //   }
-    //   await publicRequest
-    //   .post(`reset-password?token=${id}`, apiObject)
-    //   .then((res) => {
-    //     setApiSuccess("true");
-    //   })
-    //   .catch((error) => {
-    //     setApiSuccess("false");
-    //   });
-    // }
+  const handleSubmit = async (values, { resetForm }) => {
+    console.log('in function')
+    if (values.newPassword !== values.confirmPassword) {
+      setPasswordError("Passwords do not match");
+    } else {
+      console.log('in else')
+      setPasswordError(null);
+      let apiObject = {
+        password: values.currentPassword,
+        newpassword: values.newPassword,
+      };
+      await privateRequest
+        .post(`change-password`, apiObject)
+        .then((res) => {
+          console.log('api called')
+          toast.success("Password Changed Successfully!");
+          resetForm();
+        })
+        .catch((error) => {
+          console.log('error')
+          toast.error(error.response.data.msg);
+        });
+    }
   };
 
   const formik = useFormik({
@@ -51,8 +57,7 @@ export const ChangePassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
-  
-  const navigate = useNavigate();
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -63,8 +68,6 @@ export const ChangePassword = () => {
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
-
-  console.log(id);
 
   useEffect(() => {
     if (passwordError !== null) {

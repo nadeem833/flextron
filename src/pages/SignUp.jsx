@@ -29,14 +29,20 @@ const SignUp = () => {
   };
 
   const handleSubmit = async (values) => {
+    let apiObject = {
+      email: values.email,
+      password: values.password,
+      phone: values.phone,
+    };
+    console.log('apiObject', apiObject)
     await publicRequest
-      .post(`sign-up`, values)
+      .post(`sign-up`, apiObject)
       .then((res) => {
         toast.success("Sign Up Successful!");
         navigate("/sign-in");
       })
       .catch((error) => {
-        toast.error("Error signing up");
+        toast.error(error.response.data.msg);
       });
   };
 
@@ -54,6 +60,7 @@ const SignUp = () => {
         <div className="relative w-full max-w-[450px]">
           <FormHeader
             title={"Register"}
+
             subTitle={"Get 3 DAYs FREE TRIAL"}
           />
           <div className="bg-gray-200 top-[75%] bg-transparent left-8 absolute">
@@ -67,39 +74,6 @@ const SignUp = () => {
 
         <div className="bg-white p-4 md:p-8 shadow-md w-full max-w-[450px] rounded-bl-md rounded-br-md">
           <form onSubmit={formik.handleSubmit}>
-            {/*
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium leading-6 text-gray-700 mb-2 mt-[40px] "
-            >
-              Name
-            </label>
-
-             <div
-              className={` ${
-                !(formik.touched.name && formik.errors.name) ? "mb-4" : ""
-              } border-gray-300 border rounded-md flex items-center h-9`}
-            >
-              <span className="h-full flex items-center py-1 px-3 text-sm font-normal leading-5 text-gray-700 text-center whitespace-nowrap bg-gray-200 border rounded-tl-md rounded-bl-md">
-                <BsFillPersonFill />
-              </span>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter an name"
-                className="w-full rounded-md px-2 py-1 text-xs font-normal leading-6 text-gray-700 placeholder-gray-400 focus:outline-none "
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                error={formik.touched.name && Boolean(formik.errors.name)}
-              />
-            </div>
-            {formik.touched.name && formik.errors.name && (
-              <div className="text-red-600 text-xs mb-2 font-semibold py-2">
-                {formik.errors.name}
-              </div>
-            )} */}
-
             <label
               htmlFor="email"
               className="block text-sm font-medium leading-6 text-gray-700 mb-2 mt-[40px]"
@@ -198,10 +172,7 @@ const SignUp = () => {
               </div>
             )}
 
-            <button
-              type="submit"
-              className={`${styles.submitButton}`}
-            >
+            <button type="submit" className={`${styles.submitButton}`}>
               Register
             </button>
           </form>
