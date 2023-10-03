@@ -27,7 +27,7 @@ const PendingInvitesTable = ({ dataArray }) => {
                       <div
                         className={`bg-orange-200 py-1 px-2 text-xs font-semibold w-min rounded-md`}
                       >
-                        {item.status}
+                        {item.invitation_status}
                       </div>
                     </td>
                   </tr>

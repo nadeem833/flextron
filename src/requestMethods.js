@@ -15,11 +15,26 @@ export const privateRequest = axios.create({
   timeout: 60000
 });
 
+privateRequest.interceptors.response.use(
+  (response) => {
+    // Return the response if it's successful
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      // Token has expired, redirect to login page
+      window.location.href = '/sign-in'; // Replace with your login page URL
+    }
+    // Handle other errors as needed
+    return Promise.reject(error);
+  }
+);
+
 // Subscribe to changes in the token value
 store.subscribe(() => {
   const state = store.getState();
   const authToken = state.auth.userToken;
-  privateRequest.defaults.headers.Authorization = authToken || '';
+  privateRequest.defaults.headers.Authorization = `Bearer ${authToken}` || '';
 });
 
 // Initial setup of Authorization header

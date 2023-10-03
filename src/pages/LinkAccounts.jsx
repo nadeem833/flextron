@@ -7,6 +7,7 @@ import styles from "../styles";
 import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 export const LinkAccounts = () => {
   const validationSchema = Yup.object().shape({
@@ -39,6 +40,7 @@ export const LinkAccounts = () => {
     onSubmit: handleSubmit,
   });
 
+  const userEmail = useSelector((state) => state.auth.userDetails.email)
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const togglePasswordVisibility = () => {
@@ -61,7 +63,8 @@ export const LinkAccounts = () => {
       <div className="w-full h-24 bg-white mb-10 rounded-md flex items-center px-4">
         <div className="bg-blue-50 border border-blue-200 text-[#306391] rounded-md w-full px-4 flex items-center text-xs h-12 gap-2">
           <BsFillInfoCircleFill /> You are currently logged in as
-          dummy@email.com
+          {" "}
+          {userEmail}
         </div>
       </div>
 

@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "../styles";
 import { FaEnvelope } from "react-icons/fa";
+import { privateRequest } from "../requestMethods";
+import { toast } from "react-toastify";
 const InviteModal = ({ isOpen, closeModal }) => {
   
     const commonButtonStyles = 'font-light leading-6 text-sm h-9 w-full text-black'
@@ -13,24 +15,23 @@ const InviteModal = ({ isOpen, closeModal }) => {
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-    password: Yup.string().required("Password is required"),
   });
 
   const initialValues = {
     email: "",
-    password: "",
   };
 
-  const handleSubmit = async (values) => {
-    // await publicRequest
-    //   .post(`login`, values, { withCredentials: true })
-    //   .then((res) => {
-    //     toast.success("Sign In Successful!");
-    //     navigate("/dashboard");
-    //   })
-    //   .catch((error) => {
-    //     toast.error(error.response.data.message);
-    //   });
+  const handleSubmit = async (values, { resetForm }) => {
+    await privateRequest
+      .post(`invite-friend`, values)
+      .then((res) => {
+        toast.success("Invitation sent!");
+        resetForm()
+        closeModal()
+      })
+      .catch((error) => {
+        toast.error(error.response.data.msg);
+      });
   };
 
   const formik = useFormik({

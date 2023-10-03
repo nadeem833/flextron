@@ -24,7 +24,7 @@ export const Support = () => {
         toast.success("Ticket created successful!");
       })
       .catch((error) => {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.msg);
       });
   };
 

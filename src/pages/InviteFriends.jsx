@@ -1,17 +1,16 @@
-import { useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { toast } from "react-toastify";
-import { privateRequest, publicRequest } from "../requestMethods";
+import { useEffect, useState } from "react";
+
 import styles from "../styles";
-import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
-import { BsFillInfoCircleFill } from "react-icons/bs";
-import { useNavigate } from "react-router";
 import InviteModal from "../components/InviteModal";
 import PendingInvitesTable from "../components/PendingInvitesTable";
+import { privateRequest } from "../requestMethods";
+import { toast } from "react-toastify";
 
 export const InviteFriends = () => {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [paidInvitations, setPaidInvitations] = useState([]);
+  const [pendingInvitations, setPendingInvitations] = useState([]);
+
 
   function closeModal() {
     setIsOpen(false);
@@ -21,21 +20,27 @@ export const InviteFriends = () => {
     setIsOpen(true);
   }
 
-  const dummyData = [
-    {
-      email: "example1@example.com",
-      status: "Send",
-    },
-    {
-      email: "example2@example.com",
-      status: "Send",
-    },
-    {
-      email: "example3@example.com",
-      status: "Send",
-    },
-    // Add more data objects as needed
-  ];
+  const getInvitations = async () => {
+    console.log('running')
+    await privateRequest
+      .get(`invitation-status`)
+      .then((res) => {
+        let paidArray = res.data.filter((value)=>( value.invitation_status === 'accepted'))
+        let pendingArray = res.data.filter((value)=>( value.invitation_status === 'send'))
+        setPaidInvitations(paidArray)
+        setPendingInvitations(pendingArray)
+      })
+      .catch((error) => {
+        toast.error(error.response.data.msg);
+      });
+  };
+
+  useEffect(() => {
+    if(isOpen === false){
+      getInvitations()
+    }
+  }, [isOpen])
+  
 
   return (
     <div className="w-full max-w-[1280px] h-full px-5 lg:px-0">
@@ -66,7 +71,7 @@ export const InviteFriends = () => {
           <p className="text-base font-semibold mb-2 text-gray-600">
             Pending Invites
           </p>
-          <PendingInvitesTable dataArray={dummyData} />
+          <PendingInvitesTable dataArray={pendingInvitations} />
         </div>
       </div>
       <div></div>
@@ -75,7 +80,7 @@ export const InviteFriends = () => {
           <p className="text-base font-semibold mb-2 text-gray-600">
             Paid Invites
           </p>
-          <PendingInvitesTable dataArray={dummyData} />
+          <PendingInvitesTable dataArray={paidInvitations} />
          </div>
     </div>
   );

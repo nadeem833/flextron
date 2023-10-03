@@ -5,10 +5,13 @@ import { toast } from "react-toastify";
 import { privateRequest, publicRequest } from "../requestMethods";
 import styles from "../styles";
 import { FaEnvelope } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 export const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const avatarImage = "https://ionicframework.com/docs/img/demos/avatar.svg";
+  const userEmail = useSelector((state) => state.auth.userDetails.email)
+
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -20,7 +23,7 @@ export const Profile = () => {
   });
 
   const initialValues = {
-    email: "testing@yopmail.com",
+    email: userEmail,
     phone: "",
 
   };
@@ -32,7 +35,7 @@ export const Profile = () => {
         toast.success("Update successful!");
       })
       .catch((error) => {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.msg);
       });
   };
 

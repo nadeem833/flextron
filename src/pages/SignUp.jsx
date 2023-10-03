@@ -29,14 +29,20 @@ const SignUp = () => {
   };
 
   const handleSubmit = async (values) => {
+    let apiObject = {
+      email: values.email,
+      password: values.password,
+      phone: values.phone,
+    };
+    console.log('apiObject', apiObject)
     await publicRequest
-      .post(`sign-up`, values)
+      .post(`sign-up`, apiObject)
       .then((res) => {
         toast.success("Sign Up Successful!");
         navigate("/sign-in");
       })
       .catch((error) => {
-        toast.error("Error signing up");
+        toast.error(error.response.data.msg);
       });
   };
 
@@ -67,7 +73,6 @@ const SignUp = () => {
 
         <div className="bg-white p-4 md:p-8 shadow-md w-full max-w-[450px] rounded-bl-md rounded-br-md">
           <form onSubmit={formik.handleSubmit}>
-
             <label
               htmlFor="email"
               className="block text-sm font-medium leading-6 text-gray-700 mb-2 mt-[40px]"
@@ -166,10 +171,7 @@ const SignUp = () => {
               </div>
             )}
 
-            <button
-              type="submit"
-              className={`${styles.submitButton}`}
-            >
+            <button type="submit" className={`${styles.submitButton}`}>
               Register
             </button>
           </form>
