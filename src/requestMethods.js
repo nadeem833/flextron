@@ -42,4 +42,4 @@ const initialState = store.getState();
 const initialAuthToken = initialState.auth.userToken;
 privateRequest.defaults.headers.Authorization = initialAuthToken || '';
 
-console.log('header', privateRequest.defaults.headers);
+console.log('header', privateRequest.defaults.headers)

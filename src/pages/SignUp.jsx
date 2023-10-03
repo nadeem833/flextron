@@ -60,7 +60,8 @@ const SignUp = () => {
         <div className="relative w-full max-w-[450px]">
           <FormHeader
             title={"Register"}
-            subTitle={"Get 3-Day Free Flextron Trial"}
+
+            subTitle={"Get 3 DAYs FREE TRIAL"}
           />
           <div className="bg-gray-200 top-[75%] bg-transparent left-8 absolute">
             <img
