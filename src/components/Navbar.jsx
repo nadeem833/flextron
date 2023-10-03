@@ -8,8 +8,11 @@ import { BiGift, BiLogOut } from "react-icons/bi"; // Imported BiGift
 import { RiCustomerService2Fill, RiLockPasswordLine } from "react-icons/ri"; // Imported RiCustomerService2Fill
 import { AiOutlineUser } from 'react-icons/ai';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import { logoutSuccess } from "../redux/authSlice";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const location = useLocation();
   const currentURL = location.pathname;
@@ -95,6 +98,7 @@ const Navbar = () => {
                   <p
                     onClick={() => {
                       navigate("/sign-in");
+                      dispatch(logoutSuccess())
                       toggleDropdown();
                     }}
                     className={`${MenuItemStyle} `}
@@ -349,6 +353,7 @@ const Navbar = () => {
           <Link
             to="/sign-in"
             onClick={() => {
+              dispatch(logoutSuccess())
               toggleMobileDropdown();
             }}
           >
