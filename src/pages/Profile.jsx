@@ -11,6 +11,7 @@ export const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const avatarImage = "https://ionicframework.com/docs/img/demos/avatar.svg";
   const userEmail = useSelector((state) => state.auth.userDetails.email)
+  const userPhone = useSelector((state) => state.auth.userDetails.phone)
 
 
   const validationSchema = Yup.object().shape({
@@ -24,7 +25,7 @@ export const Profile = () => {
 
   const initialValues = {
     email: userEmail,
-    phone: "",
+    phone: userPhone,
 
   };
 
@@ -129,8 +130,9 @@ export const Profile = () => {
             type="text"
             id="phone"
             name="phone"
+            disabled
             placeholder="Amazon Flex Phone"
-            className={`${styles.formInput}`}
+            className={`${styles.formInput} bg-[#eff2f7] cursor-not-allowed`}
             value={formik.values.phone}
             onChange={formik.handleChange}
             error={formik.touched.phone && Boolean(formik.errors.phone)}

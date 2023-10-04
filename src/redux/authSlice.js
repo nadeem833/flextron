@@ -5,7 +5,8 @@ const initialState = {
     userDetails: {
         email:'',
         phone:''
-    }
+    },
+    isAuthenticated:false
 }
 
 const authSlice = createSlice({
@@ -18,13 +19,15 @@ const authSlice = createSlice({
                 email:action.payload.data.email,
                 phone:action.payload.data.phone
             }
+            state.isAuthenticated = true
         },
         logoutSuccess: (state) => {
             state.userToken = null;
             state.userDetails= {
                 email:'',
                 phone:''
-            }
+            },
+            state.isAuthenticated = false
         },
 
     }

@@ -6,10 +6,13 @@ import { LuActivitySquare, LuLayoutDashboard } from "react-icons/lu"; // Importe
 import { ImLink } from "react-icons/im"; // Imported ImLink
 import { BiGift, BiLogOut } from "react-icons/bi"; // Imported BiGift
 import { RiCustomerService2Fill, RiLockPasswordLine } from "react-icons/ri"; // Imported RiCustomerService2Fill
-import { AiOutlineUser } from 'react-icons/ai';
-import { RxHamburgerMenu } from 'react-icons/rx';
+import { AiOutlineUser } from "react-icons/ai";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { logoutSuccess } from "../redux/authSlice";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const currentURL = location.pathname;
@@ -17,7 +20,7 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const MenuItemStyle =
-    "block px-4 py-2 text-sm hover:bg-orange-50 hover:text-[#f7931e] cursor-pointer";
+    "flex gap-2 items-center px-4 py-2 text-sm hover:bg-orange-50 hover:text-[#f7931e] cursor-pointer";
   const NavLinkStyle = "hover:text-[#f7931e] flex gap-2 items-center";
 
   const toggleMobileDropdown = () => {
@@ -32,28 +35,27 @@ const Navbar = () => {
       <div className="w-full h-[70px] p-5 lg:p-0 max-w-[1280px] mx-auto flex justify-between items-center ">
         {/* Section 1 */}
         <div className="flex items-center justify-between w-full">
-          <div className="flex">
+          <div className="hidden lg:flex">
             {/* Logo */}
             <div className="w-36 h-[50px] flex items-center">
               <img src="/Logo.png" alt="" className="object-cover" />
             </div>
-
-           
           </div>
 
-           {/* Burger Menu */}
-           <div className="lg:hidden">
-              <button
-                onClick={toggleMobileDropdown}
-                type="button"
-                className="text-white focus:outline-none"
-              >
-                <RxHamburgerMenu className="text-2xl text-gray-900"/>
-              </button>
-            </div>
+          {/* Burger Menu */}
+          <div className="lg:hidden flex gap-2 items-center">
+              <img src="/SmallLogo.png" alt="" className="object-cover w-[50px] h-[60px]" />
+            <button
+              onClick={toggleMobileDropdown}
+              type="button"
+              className="text-white focus:outline-none"
+            >
+              <RxHamburgerMenu className="text-2xl text-gray-900" />
+            </button>
+          </div>
 
           {/* User Dropdown */}
-          <div className="relative hidden lg:inline-block text-left">
+          <div className="relative inline-block text-left">
             <button
               onClick={toggleDropdown}
               type="button"
@@ -77,6 +79,7 @@ const Navbar = () => {
                         : "text-gray-700"
                     }`}
                   >
+                    <AiOutlineUser />
                     Edit Profile
                   </p>
                   <p
@@ -90,15 +93,18 @@ const Navbar = () => {
                         : "text-gray-700"
                     }`}
                   >
+                    <RiLockPasswordLine />
                     Change Password
                   </p>
                   <p
                     onClick={() => {
                       navigate("/sign-in");
+                      dispatch(logoutSuccess());
                       toggleDropdown();
                     }}
                     className={`${MenuItemStyle} `}
                   >
+                     <BiLogOut />
                     Logout
                   </p>
                 </div>
@@ -312,50 +318,6 @@ const Navbar = () => {
               }`}
             >
               <BsCreditCard2Front /> Make Payment
-            </a>
-          </Link>
-          <Link
-            to="/profile"
-            onClick={() => {
-              toggleMobileDropdown();
-            }}
-          >
-            <a
-              className={`${NavLinkStyle} ${
-                currentURL.includes("profile")
-                  ? "text-[#f7931e]"
-                  : "text-gray-700"
-              }`}
-            >
-              <AiOutlineUser /> Edit Profile
-            </a>
-          </Link>
-          <Link
-            to="/change-password"
-            onClick={() => {
-              toggleMobileDropdown();
-            }}
-          >
-            <a
-              className={`${NavLinkStyle} ${
-                currentURL.includes("change-password")
-                  ? "text-[#f7931e]"
-                  : "text-gray-700"
-              }`}
-            >
-              < RiLockPasswordLine/> Change Password
-            </a>
-          </Link>
-          <Link
-            to="/sign-in"
-            onClick={() => {
-              toggleMobileDropdown();
-            }}
-          >
-            <a
-              className={`${NavLinkStyle}`}
-            >
-              <BiLogOut/>Logout
             </a>
           </Link>
         </div>
