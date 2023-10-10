@@ -1,17 +1,24 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Hero from "../components/Hero";
+import AboutUs from "../components/AboutUs";
+import Pricing from "../components/Pricing";
+import ContactUs from "../components/ContactUs";
+import LandingPageFooter from "../components/LandingPageFooter";
+import LandingPageNavbar from "../components/LandingPageNavbar";
 
 const LandingPage = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
-    <div className='text-black bg-blue-200 h-screen w-full flex justify-center items-center gap-6'>
-
-    <button onClick={()=>{navigate('/sign-in')}}  className='border-2 border-cyan-700'>Sign In</button>
-    <button onClick={()=>{navigate('/sign-up')}} className='border-2 border-cyan-700'> Sign Up</button>
-
+    <div className="bg-black">
+      <LandingPageNavbar/>
+      <Hero />
+      <AboutUs/>
+      <Pricing/>
+      <ContactUs/>
+      <LandingPageFooter/>
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;

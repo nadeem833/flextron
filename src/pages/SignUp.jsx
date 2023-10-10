@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import FormHeader from "../components/FormHeader";
 import styles from "../styles";
 
-const SignUp = () => {
+const ContactUs = () => {
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email address")
@@ -197,4 +197,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default ContactUs;
