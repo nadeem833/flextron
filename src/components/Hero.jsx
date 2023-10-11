@@ -4,9 +4,11 @@ import { useNavigate } from "react-router";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const Heading='text-left text-white text-lg sm:text-sm md:text-base lg:text-lg font-light font-SpaceGrotesk'
+  const Number='text-left text-white text-5xl sm:text-4xl md:text-5xl font-normal font-SpaceGrotesk'
   return (
-    <section id='Home' className=" bg-black w-screen max-w-[1280px] mx-auto flex justify-between items-center px-4 py-8 h-auto">
-      <div className="relative grid w-full mx-auto laptop:gap-8 xl:gap-0 laptop:py-16 laptop:grid-cols-12">
+    <section id='Home' className=" w-screen max-w-[1280px] mx-auto flex justify-between items-center px-4 py-8 h-full mb-72">
+      <div className="relative grid w-full mx-auto laptop:gap-8 xl:gap-0 laptop:py-16 laptop:grid-cols-12 mb-10 sm:mb-0">
         <div className="mr-auto place-self-center laptop:col-span-5">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
             Capture Blocks Before Your Phone See's Them
@@ -35,11 +37,6 @@ const Hero = () => {
           </div>
         </div>
         <div className="mt-8 laptop:mt-0 max-full laptop:col-span-7 flex justify-center">
-          {/* <img
-            // src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
-            src="/Robot.gif"
-            alt="mockup"
-          /> */}
           <video
             className="w-[800px] md:h-[800px]"
             autoplay="autoplay"
@@ -52,24 +49,25 @@ const Hero = () => {
           </video>
         </div>
 
-        <div className="absolute  w-full h-72 top-[90%] lg:top-[85%] border rounded-[70px] flex justify-evenly items-center bg-[#1e1e1e] brightness-[115%] bg-opacity-90">
-          <div className="text-white">
-            <h3 className="text-left text-white text-lg font-light font-SpaceGrotesk">Users</h3>
-            <h1 className="text-left text-white text-5xl font-normal font-SpaceGrotesk">23K</h1>
+        <div className="absolute py-5 w-full sm:h-72 top-[90%] lg:top-[85%] border rounded-[70px] flex flex-col gap-6 sm:gap-0 sm:flex-row justify-evenly items-center bg-[#1e1e1e] brightness-[115%] bg-opacity-90 ">
+          <div className='flex flex-col items-center sm:items-start'>
+            <h3 className={Heading}>Users</h3>
+            <h1 className={Number}>23K</h1>
           </div>
-          <div className="text-white">
-          <h3 className="text-left text-white text-lg font-light font-SpaceGrotesk">Offers Accepted</h3>
-            <h1 className="text-left text-white text-5xl font-normal font-SpaceGrotesk">201K</h1>
+          <div className='flex flex-col items-center sm:items-start'>
+          <h3 className={Heading}>Offers Accepted</h3>
+            <h1 className={Number}>201K</h1>
           </div>
-          <div className="text-white">
-          <h3 className="text-left text-white text-lg font-light font-SpaceGrotesk">Overall Capture Rate %</h3>
-            <h1 className="text-left text-white text-5xl font-normal font-SpaceGrotesk">92</h1>
+          <div className='flex flex-col items-center sm:items-start'>
+          <h3 className={Heading}>Overall Capture Rate %</h3>
+            <h1 className={Number}>92</h1>
           </div>
-          <div className="text-white"> 
-          <h3 className="text-left text-white text-lg font-light font-SpaceGrotesk">Invitations send</h3>
-            <h1 className="text-left text-white text-5xl font-normal font-SpaceGrotesk">542</h1>
+          <div className='flex flex-col items-center sm:items-start text'> 
+          <h3 className={Heading}>Invitations send</h3>
+            <h1 className={Number}>542</h1>
             </div>
         </div>
+        
       </div>
     </section>
   );

@@ -90,7 +90,7 @@ const LandingPageNavbar = () => {
 
       {/* Mobile Navigation Dropdown */}
       {isMobileDropdownOpen && (
-        <div className="lg:hidden mt-2 w-full bg-gray-900 flex flex-col gap-2 py-5 px-4">
+        <div className="lg:hidden mt-2 w-full bg-black border-t border-b flex flex-col gap-2 py-5 px-4">
           {NavArray.map((value, index) => (
             <Link
               key={index}

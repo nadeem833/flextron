@@ -28,11 +28,14 @@ const pricingArray = [
 ];
 const Pricing = () => {
   return (
-    <section id="Pricing"  className="bg-black w-screen">
-      <div class="flex flex-wrap justify-center w-full max-w-[1280px] mx-auto">
+    <section id="Pricing" className="bg-black w-screen relative overflow-x-hidden">
+      <div class="flex flex-wrap justify-center w-full max-w-[1280px] mx-auto z-10">
         {pricingArray.map((value, index) => (
-          <div key={index} class="px-4 py-12 w-auto sm:w-auto ">
-            <div class="relative flex rounded-[93px] w-full max-w-[500px] sm:w-[500px] h-auto md:h-[734px] bg-[#FFF] p-10 md:p-20 flex-col">
+          <div
+            key={index}
+            class="px-4 py-12 w-full sm:w-auto flex justify-center"
+          >
+            <div class="relative flex rounded-[93px] w-full  max-w-[500px] sm:w-[500px] h-auto md:h-[734px] bg-[#FFF] p-10 md:p-20 flex-col items-center justify-center">
               <div class="hidden md:inline-flex absolute top-[-30px] left-[290px] transform -translate-x-1/2 w-full mr-3 items-center justify-end">
                 <img src={value.image} className="object-contain w-48 h-w-48" />
               </div>
@@ -68,7 +71,7 @@ const Pricing = () => {
                       navigate("sign-up");
                     }}
                     type="button"
-                    className="w-[300px] h-[50px] rounded-[30px] bg-gradient-to-r from-orange-500 to-yellow-400 hover:bg-[#E27A00] focus:outline-none mt-20 "
+                    className="w-[200px]  sm:w-[300px] h-[50px] rounded-[30px] bg-gradient-to-r from-orange-500 to-yellow-400 hover:bg-[#E27A00] focus:outline-none mt-20 "
                   >
                     Get Started
                   </button>
