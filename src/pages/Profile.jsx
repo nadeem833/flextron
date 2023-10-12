@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import { privateRequest, publicRequest } from "../requestMethods";
+import { privateRequest } from "../requestMethods";
 import styles from "../styles";
 import { FaEnvelope } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -60,7 +60,7 @@ export const Profile = () => {
         onSubmit={formik.handleSubmit}
         className="bg-white rounded-md p-5 flex flex-col gap-1"
       >
-        <div class="w-[150px] h-[150px] overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 mb-3">
+        <div className="w-[150px] h-[150px] overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 mb-3">
           <img
             src={
               selectedImage === null

@@ -1,4 +1,3 @@
-import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -23,7 +22,7 @@ const ContactForm = () => {
   });
 
   return (
-    <section id="Contact Us" class="flex justify-center flex-col items-center w-full max-w-[1280px] mx-auto px-5 mt-20">
+    <section id="Contact Us" className="flex justify-center flex-col items-center w-full max-w-[1280px] mx-auto px-5 mt-20">
       <h1 className="font-SpaceGrotesk text-5xl font-normal text-left text-white mb-14">
         Contact Us
       </h1>
