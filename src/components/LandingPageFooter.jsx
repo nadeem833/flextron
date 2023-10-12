@@ -1,9 +1,7 @@
-import React from 'react'
-
 const LandingPageFooter = () => {
   return (
    
-<footer class="bg-[#1e1e1e] mt-14 sm:h-[286px]">
+<footer className="bg-[#1e1e1e] mt-14 sm:h-[286px]">
 <div className="p-4 flex items-center h-full">
   <div className="container w-screen max-w-[1280px] mx-auto flex flex-col sm:flex-row justify-between items-center">
     

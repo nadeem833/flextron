@@ -1,4 +1,4 @@
-import React from "react";
+import { useNavigate } from "react-router";
 
 const pricingArray = [
   {
@@ -27,21 +27,22 @@ const pricingArray = [
   },
 ];
 const Pricing = () => {
+  const navigate = useNavigate()
   return (
     <section id="Pricing" className="bg-black w-screen relative overflow-x-hidden">
-      <div class="flex flex-wrap justify-center w-full max-w-[1280px] mx-auto z-10">
+      <div className="flex flex-wrap justify-center w-full max-w-[1280px] mx-auto z-10">
         {pricingArray.map((value, index) => (
           <div
             key={index}
-            class="px-4 py-12 w-full sm:w-auto flex justify-center"
+            className="px-4 py-12 w-full sm:w-auto flex justify-center"
           >
-            <div class="relative flex rounded-[93px] w-full  max-w-[500px] sm:w-[500px] h-auto md:h-[734px] bg-[#FFF] p-10 md:p-20 flex-col items-center justify-center">
-              <div class="hidden md:inline-flex absolute top-[-30px] left-[290px] transform -translate-x-1/2 w-full mr-3 items-center justify-end">
+            <div className="relative flex rounded-[93px] w-full  max-w-[500px] sm:w-[500px] h-auto md:h-[734px] bg-[#FFF] p-10 md:p-20 flex-col items-center justify-center">
+              <div className="hidden md:inline-flex absolute top-[-30px] left-[290px] transform -translate-x-1/2 w-full mr-3 items-center justify-end">
                 <img src={value.image} className="object-contain w-48 h-w-48" />
               </div>
 
-              <div class="flex flex-col items-start flex-grow w-full">
-                <h2 class="font-space-grotesk text-5xl font-normal text-left text-orange-400">
+              <div className="flex flex-col items-start flex-grow w-full">
+                <h2 className="font-space-grotesk text-5xl font-normal text-left text-orange-400">
                   {value.title}
                 </h2>
                 <h3 className="font-Gilroy-Regular text-xl font-normal text-center text-black">
@@ -50,7 +51,7 @@ const Pricing = () => {
                 <h4 className="font-space-grotesk text-lg font-light text-left text-black mt-10">
                   Per Week
                 </h4>
-                <p class="font-space-grotesk text-5xl font-normal text-left text-black">
+                <p className="font-space-grotesk text-5xl font-normal text-left text-black">
                   {value.price}
                 </p>
 
