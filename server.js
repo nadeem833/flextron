@@ -15,9 +15,9 @@ const __dirname = dirname(__filename);
 app.use(express.static(resolve(__dirname, 'dist')));
 
 // Catch-all route to serve the index.html file
-app.get('*', (req, res) => {
-    res.sendFile(resolve(__dirname, 'dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(resolve(__dirname, 'dist', 'index.html'));
+// });
 
 // Start the server
 const port = process.env.PORT || 3000;
